@@ -18,7 +18,7 @@ def getReport():
                     fileName = file.replace('.' + htm, "")
                     df = pd.read_csv("/Users/chukimmuoi/PycharmProjects/ChungKhoan/data/percent/year/" + file)
 
-                    plt.plot(df["Year"], df["Value"])
+                    plt.plot(df["Year"], df["Close"], df["Year"], df["Value"], )
                     plt.xlabel('Thời gian')
                     plt.ylabel('Giá chứng khoán')
                     plt.title(fileName)

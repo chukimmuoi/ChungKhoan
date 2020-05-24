@@ -22,7 +22,7 @@ def getPercentFollowYear():
                         if index == 0:
                             yearOld = row['transDate'].split('-')[2]
                             closeOld = row['close']
-                            dfOut = dfOut.append({'Year': yearOld, 'Status': "START", 'Value': 0}, ignore_index=True)
+                            dfOut = dfOut.append({'Year': yearOld, 'Close': closeOld, 'Status': "START", 'Value': 0}, ignore_index=True)
                         else:
                             yearNew = row['transDate'].split('-')[2]
                             if yearNew != yearOld:
@@ -33,7 +33,7 @@ def getPercentFollowYear():
                                     status = "TANG"
                                 else:
                                     status = "KHONG DOI"
-                                dfOut = dfOut.append({'Year': yearNew, 'Status': status, 'Value': (percent/closeOld) * 100}, ignore_index=True)
+                                dfOut = dfOut.append({'Year': yearNew, 'Close': row['close'], 'Status': status, 'Value': (percent/closeOld) * 100}, ignore_index=True)
                                 closeOld = row['close']
 
                             yearOld = yearNew
