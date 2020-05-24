@@ -1,19 +1,9 @@
 import pandas as pd
 import os
-import csv
 import json
-import time
-from datetime import datetime
-
-from time import mktime
-import matplotlib
-import matplotlib.pyplot as plt
 from matplotlib import style
 
 style.use("dark_background")
-
-import re
-import urllib
 
 path = "/Users/chukimmuoi/PycharmProjects/ChungKhoan/data"
 
@@ -26,24 +16,26 @@ def getMCK():
     for folder in listFolder[1:]:
         files = os.listdir(folder)
         htm = folder.split("/")[-1]
+        if htm != 'htm':
+            break
         htms.append(htm)
 
         if len(files) > 0:
             for file in files:
-                filename = file.replace('.' + htm, "")
+                fileName = file.replace('.' + htm, "")
+                print("1 -----> fileName = " + fileName)
                 fullFilePath = folder + '/' + file
-                print(fullFilePath)
-                contentFile = open(fullFilePath, 'r', encoding='mac_roman').read()
-
+                print("2 -----> fullFilePath = " + fullFilePath)
+                contentFile = open(fullFilePath, 'r', encoding='utf-8').read().replace("\n", "")
                 first = contentFile.split('drawChartForFirstTime(')
                 if len(first) >= 2:
-                    jsonString = first[1].split(');\n});\n</script>\n<input type="hidden" id="whichSymbolIsDraw"')
-                    print(jsonString[0])
+                    jsonString = first[1].split(');});</script><input type="hidden" id="whichSymbolIsDraw"')
+                    print(fileName + " === " + jsonString[0])
 
                     jsonLoad = json.loads(jsonString[0])
                     result = pd.DataFrame(jsonLoad)
                     result['date'] = pd.to_datetime(result['transDate'], unit='ms')
-                    result.to_csv("/Users/chukimmuoi/PycharmProjects/ChungKhoan/data/vsc/" + filename + ".csv", index=True)
+                    result.to_csv("/Users/chukimmuoi/PycharmProjects/ChungKhoan/data/vcs/" + fileName + ".csv", index=True)
 
 
 getMCK()
