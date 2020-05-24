@@ -15,10 +15,12 @@ def getReport():
             for file in files:
                 fileName = file.replace('.' + htm, "")
                 df = pd.read_csv("/Users/chukimmuoi/PycharmProjects/ChungKhoan/data/vcs/" + file)
-                plt.plot(df['close'])
-                plt.ylabel('Giá chứng khoán')
+                plot_df = df.set_index(['transDate'])
+                plot_df['close'].plot()
                 plt.xlabel('Thời gian')
-                plt.title('Giá khoán ' + fileName)
+                plt.ylabel('Giá chứng khoán')
+                plt.title(fileName)
+                plt.legend()
                 plt.show()
 
 

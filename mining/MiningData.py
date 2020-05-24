@@ -34,7 +34,7 @@ def getMCK():
 
                     jsonLoad = json.loads(jsonString[0])
                     result = pd.DataFrame(jsonLoad)
-                    result['date'] = pd.to_datetime(result['transDate'], unit='ms')
+                    result['transDate'] = pd.to_datetime(result['transDate'], unit='ms').dt.strftime('%d-%m-%Y')
                     result.to_csv("/Users/chukimmuoi/PycharmProjects/ChungKhoan/data/vcs/" + fileName + ".csv", index=True)
 
 
