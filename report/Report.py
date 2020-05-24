@@ -53,7 +53,7 @@ def getPercentFollowYear():
                                 status = "TANG"
                             else:
                                 status = "KHONG DOI"
-                            dfOut = dfOut.append({'Year': yearNew, 'Status': status, 'Value': (row['close']/closeOld - 1) * 100}, ignore_index=True)
+                            dfOut = dfOut.append({'Year': yearNew, 'Status': status, 'Value': (percent/closeOld) * 100}, ignore_index=True)
                             closeOld = row['close']
 
                         yearOld = yearNew
