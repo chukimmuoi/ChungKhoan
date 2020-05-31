@@ -6,7 +6,7 @@ path = "/Users/chukimmuoi/PycharmProjects/ChungKhoan/data"
 ma  = ["VIC", "VCS", "MWG", "VNM", "PNJ", "MBB", "VCB", "VCG", "HPG", "ACB", "FPT"]
 ma2 = ["VIC", "VCS", "MWG", "VNM", "PNJ", "MBB", "VCB", "VGC", "VJC", "HCM" "GAS", "REE"]
 
-chot= ["VIC", "VCS", "MWG", "VNM", "PNJ", "MBB", "VCB", "VJC",  "REE", "HPG", "FPT", "VGC"]
+chot= ["VIC", "VCS", "MWG", "VNM", "PNJ", "MBB", "SVI", "VCB", "VJC",  "REE", "HPG", "FPT", "VGC", "SVI"]
 
 def getReport():
     listFolder = [x[0] for x in os.walk(path)]

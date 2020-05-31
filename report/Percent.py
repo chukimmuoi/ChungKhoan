@@ -47,7 +47,7 @@ def getPercentFollowYear():
 
                             yearOld = yearNew
                     r = ((giatrituonglai / giatrihientai)**(1/soky) - 1) * 100
-                    if r > 11:
+                    if r > 15:
                         print("fileName = " + fileName + " - r = " + str(r))
                     dfOut = dfOut.append({'Year': "2021", 'Close': "close", 'Status': "status", 'Value': r}, ignore_index=True)
                     dfOut.to_csv("/Users/chukimmuoi/PycharmProjects/ChungKhoan/data/percent/year/" + fileName, index=True)
