@@ -5,39 +5,30 @@ from matplotlib import style
 
 style.use("dark_background")
 
-path = "/Users/chukimmuoi/PycharmProjects/ChungKhoan/data"
 
-htms = []
+def convert_htm_to_csv(path, in_folder, out_folder):
+    list_folder = [x[0] for x in os.walk(path)]
 
-
-def getMCK():
-    listFolder = [x[0] for x in os.walk(path)]
-
-    for folder in listFolder[1:]:
-        print("folder = " + folder)
-        if folder == "/Users/chukimmuoi/PycharmProjects/ChungKhoan/data/htm":
+    for folder in list_folder[1:]:
+        if folder == path + '/' + in_folder:
             files = os.listdir(folder)
-            htm = folder.split("/")[-1]
-            if htm != 'htm':
-                break
-            htms.append(htm)
 
             if len(files) > 0:
                 for file in files:
-                    fileName = file.replace('.' + htm, "")
-                    print("1 -----> fileName = " + fileName)
-                    fullFilePath = folder + '/' + file
-                    print("2 -----> fullFilePath = " + fullFilePath)
-                    contentFile = open(fullFilePath, 'r', encoding='utf-8').read().replace("\n", "")
-                    first = contentFile.split('drawChartForFirstTime(')
+                    file_name = file.replace('.htm', "")
+                    full_file_path = folder + '/' + file
+                    print(file_name)
+
+                    content_file = open(full_file_path, 'r', encoding='utf-8').read().replace("\n", "")
+                    first = content_file.split('drawChartForFirstTime(')
                     if len(first) >= 2:
-                        jsonString = first[1].split(');});</script><input type="hidden" id="whichSymbolIsDraw"')
-                        print(fileName + " === " + jsonString[0])
+                        json_string = first[1].split(');});</script><input type="hidden" id="whichSymbolIsDraw"')
 
-                        jsonLoad = json.loads(jsonString[0])
-                        result = pd.DataFrame(jsonLoad)
+                        data = json.loads(json_string[0])
+                        result = pd.DataFrame(data)
                         result['transDate'] = pd.to_datetime(result['transDate'], unit='ms').dt.strftime('%d-%m-%Y')
-                        result.to_csv("/Users/chukimmuoi/PycharmProjects/ChungKhoan/data/vcs/" + fileName + ".csv", index=True)
+                        result.to_csv(path + '/' + out_folder + '/' + file_name + ".csv", index=True)
 
 
-getMCK()
+path = "/Users/chukimmuoi/PycharmProjects/ChungKhoan/data"
+convert_htm_to_csv(path, 'htm', 'vcs')
