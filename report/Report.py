@@ -13,7 +13,7 @@ def getReport():
 
     for folder in listFolder[1:]:
         print("folder = " + folder)
-        if folder == "/Users/chukimmuoi/PycharmProjects/ChungKhoan/data/vcs":
+        if folder == "/Users/chukimmuoi/PycharmProjects/ChungKhoan/data/csv":
             files = os.listdir(folder)
             htm = folder.split("/")[-1]
             if len(files) > 0:
@@ -21,7 +21,7 @@ def getReport():
                     fileName = file.replace('.csv', "")
                     print("----> fileName = " + fileName)
                     if fileName in chot:
-                        df = pd.read_csv("/Users/chukimmuoi/PycharmProjects/ChungKhoan/data/vcs/" + file)
+                        df = pd.read_csv("/Users/chukimmuoi/PycharmProjects/ChungKhoan/data/csv/" + file)
                         plot_df = df.set_index(['transDate'])
                         plot_df['close'].plot()
                         plt.xlabel('Thời gian')

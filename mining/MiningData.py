@@ -30,5 +30,4 @@ def convert_htm_to_csv(path, in_folder, out_folder):
                         result.to_csv(path + '/' + out_folder + '/' + file_name + ".csv", index=True)
 
 
-path = "/Users/chukimmuoi/PycharmProjects/ChungKhoan/data"
-convert_htm_to_csv(path, 'htm', 'vcs')
+convert_htm_to_csv('../data', 'htm', 'csv')

@@ -10,13 +10,13 @@ def getPercentFollowYear():
 
     for folder in listFolder[1:]:
         print("folder = " + folder)
-        if folder == "/Users/chukimmuoi/PycharmProjects/ChungKhoan/data/vcs":
+        if folder == "/Users/chukimmuoi/PycharmProjects/ChungKhoan/data/csv":
             files = os.listdir(folder)
             htm = folder.split("/")[-1]
             if len(files) > 0:
                 for file in files:
                     fileName = file.replace('.' + htm, "")
-                    df = pd.read_csv("/Users/chukimmuoi/PycharmProjects/ChungKhoan/data/vcs/" + file)
+                    df = pd.read_csv("/Users/chukimmuoi/PycharmProjects/ChungKhoan/data/csv/" + file)
                     dfOut = pd.DataFrame(columns=['Year', 'Status', 'Value'])
                     soky = 0
                     giatrihientai  = 0
